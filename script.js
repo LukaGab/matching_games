@@ -74,63 +74,25 @@ target.addEventListener('dragover', (e) => {
 target.addEventListener('drop', (e) => {
     e.preventDefault();
     const draggedItem = e.dataTransfer.getData('text');
-    if (draggedItem === target.textContent) {
+    handleSelection(draggedItem);
+});
+
+// Mobile and Desktop Click/Tap Support
+optionElements.forEach(option => {
+    option.addEventListener('click', (e) => {
+        handleSelection(option.textContent);
+    });
+});
+
+// Handle selection (drag or click)
+function handleSelection(selectedItem) {
+    if (selectedItem === target.textContent) {
         showMessage('correct');
         setTimeout(startRound, 2000);
     } else {
         showMessage('wrong');
     }
-});
-
-// Mobile Touch Support
-optionElements.forEach(option => {
-    let initialX, initialY;
-
-    option.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Prevent scrolling
-        const touch = e.touches[0];
-        initialX = touch.clientX - option.offsetLeft;
-        initialY = touch.clientY - option.offsetTop;
-        option.style.position = 'absolute'; // Allow movement
-        option.style.zIndex = 1000; // Bring to front
-    });
-
-    option.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        option.style.left = (touch.clientX - initialX) + 'px';
-        option.style.top = (touch.clientY - initialY) + 'px';
-    });
-
-    option.addEventListener('touchend', (e) => {
-        const touch = e.changedTouches[0];
-        const targetRect = target.getBoundingClientRect();
-        const optionRect = option.getBoundingClientRect();
-
-        // Check if option overlaps target
-        const isOverTarget = (
-            optionRect.left < targetRect.right &&
-            optionRect.right > targetRect.left &&
-            optionRect.top < targetRect.bottom &&
-            optionRect.bottom > targetRect.top
-        );
-
-        if (isOverTarget) {
-            if (option.textContent === target.textContent) {
-                showMessage('correct');
-                setTimeout(startRound, 2000);
-            } else {
-                showMessage('wrong');
-            }
-        }
-
-        // Reset position
-        option.style.position = '';
-        option.style.left = '';
-        option.style.top = '';
-        option.style.zIndex = '';
-    });
-});
+}
 
 // Play background music
 bgMusic.volume = 0.5;
