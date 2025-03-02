@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #CDE8E5;
+    position: relative;
+}
+
+h1 {
+    color: #4D869C;
+    font-size: 2em;
+}
+
+.target-area {
+    width: 350px; /* Increased from 300px */
+    height: 350px; /* Increased from 300px */
+    margin: 20px auto;
+    background-color: #d3d3d3;
+    border: 2px dashed #4D869C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5em; /* Increased from 4em for proportionality */
+}
+
+.options-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.option {
+    width: 150px;
+    height: 150px;
+    background-color: #87ceeb;
+    border: 2px solid #4682b4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #add8e6;
+}
+
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+.check::before {
+    content: '✔';
+    position: absolute;
+    font-size: 3em;
+    color: #32cd32;
+    transform: translateZ(10px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: pop 0.5s ease-out;
+}
+
+.xmark::before {
+    content: '✘';
+    position: absolute;
+    font-size: 3em;
+    color: #ff0000;
+    transform: translateZ(10px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: pop 0.5s ease-out;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5) translateZ(0); }
+    100% { transform: scale(1) translateZ(10px); }
+}
+
+.option, .target-area {
+    transition: background-color 0.3s ease;
+}
+
+.circle { border-radius: 50%; }
+.square { /* Default square shape */ }
+.triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+.rectangle { width: 180px; height: 120px; }
+.diamond { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.semicircle { clip-path: circle(50% at 50% 100%); }
+.oval { border-radius: 50% / 75%; }
+.heart { clip-path: polygon(50% 0%, 75% 25%, 100% 50%, 75% 75%, 50% 100%, 25% 75%, 0% 50%, 25% 25%); }
+.star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.trapezoid { clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%); }
+.parallelogram { clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); }
