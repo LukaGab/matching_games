@@ -1,100 +1,92 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    background-color: #CDE8E5;
-    position: relative;
+body { /* Styles the whole page */
+    font-family: Arial, Helvetica, sans-serif; /* Uses easy-to-read fonts */
+    text-align: center; /* Centers everything */
+    background-color: #CDE8E5; /* Light teal background */
+    position: relative; /* Helps position #message absolutely */
 }
 
-h1 {
-    color: #4D869C;
-    font-size: 2em;
+h1 { /* Styles the title */
+    color: #4D869C; /* Teal color */
+    font-size: 2em; /* Twice normal text size */
 }
 
-.target-area {
-    width: 350px;
-    height: 350px;
-    margin: 20px auto;
-    background-color: #d3d3d3;
-    border: 2px dashed #4D869C;
-    display: flex;
+.target-area { /* Styles the target box */
+    width: 350px; /* 350 pixels wide */
+    height: 350px; /* 350 pixels tall */
+    margin: 20px auto; /* 20px top/bottom, centered horizontally */
+    background-color: #d3d3d3; /* Light gray */
+    border: 2px dashed #4D869C; /* Dashed teal border */
+    display: flex; /* Flexbox for centering content */
+    align-items: center; /* Vertically centers text */
+    justify-content: center; /* Horizontally centers text */
+    font-size: 3em; /* Big text */
+    overflow: hidden; /* Hides text that spills out */
+}
+
+.options-area { /* Container for options */
+    display: flex; /* Lines up options horizontally */
+    justify-content: center; /* Centers them */
+    margin-top: 50px; /* Space above */
+    gap: 20px; /* Space between options */
+}
+
+.option { /* Each option box */
+    width: 150px; /* 150 pixels wide */
+    height: 150px; /* 150 pixels tall */
+    background-color: #87ceeb; /* Light blue */
+    border: 2px solid #4682b4; /* Solid teal border */
+    display: flex; /* Centers content */
     align-items: center;
     justify-content: center;
-    font-size: 4.5em;
+    font-size: 2em; /* Medium-big text */
+    cursor: pointer; /* Hand cursor for clicking */
+    position: relative; /* For positioning */
+    overflow: hidden; /* Hides overflow */
 }
 
-.options-area {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    gap: 20px;
+.option:hover, .option:active { /* When hovered or tapped */
+    background-color: #add8e6; /* Lighter blue */
 }
 
-.option {
-    width: 150px;
-    height: 150px;
-    background-color: #87ceeb;
-    border: 2px solid #4682b4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5em;
-    cursor: pointer;
-    position: relative; /* Default position for consistency */
-}
-
-.option:hover {
-    background-color: #add8e6;
-}
-
-/* Rest of the CSS remains the same */
-#message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* Message styling */
+#message { /* Feedback box */
+    position: absolute; /* Floats over everything */
+    top: 50%; left: 50%; /* Middle of screen */
+    transform: translate(-50%, -50%); /* Centers it exactly */
     font-size: 2em;
-    padding: 20px;
-    border-radius: 10px;
-    display: none;
+    padding: 20px; /* Space inside */
+    border-radius: 10px; /* Rounded corners */
+    display: none; /* Hidden until needed */
 }
 
-.check::before {
-    content: '✔';
+/* Check and X marks */
+.check::before, .xmark::before { /* Adds symbols */
     position: absolute;
     font-size: 3em;
-    color: #32cd32;
-    transform: translateZ(10px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    animation: pop 0.5s ease-out;
+    transform: translateZ(10px); /* 3D effect */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    animation: pop 0.5s ease-out; /* Pop animation */
+}
+.check::before { content: '✔'; color: #32cd32; } /* Green check */
+.xmark::before { content: '✘'; color: #ff0000; } /* Red X */
+
+@keyframes pop { /* Animation definition */
+    0% { transform: scale(0.5) translateZ(0); } /* Start small */
+    100% { transform: scale(1) translateZ(10px); } /* Grow to normal */
 }
 
-.xmark::before {
-    content: '✘';
-    position: absolute;
-    font-size: 3em;
-    color: #ff0000;
-    transform: translateZ(10px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    animation: pop 0.5s ease-out;
-}
+/* Smooth color change */
+.option, .target-area { transition: background-color 0.3s ease; }
 
-@keyframes pop {
-    0% { transform: scale(0.5) translateZ(0); }
-    100% { transform: scale(1) translateZ(10px); }
-}
-
-.option, .target-area {
-    transition: background-color 0.3s ease;
-}
-
-.circle { border-radius: 50%; }
-.square { /* Explicit square, but default anyway */ }
-.triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
-.rectangle { width: 180px; height: 120px; }
-.diamond { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
-.semicircle { clip-path: circle(50% at 50% 100%); }
-.oval { border-radius: 50% / 75%; }
-.heart { clip-path: polygon(50% 0%, 75% 25%, 100% 50%, 75% 75%, 50% 100%, 25% 75%, 0% 50%, 25% 25%); }
-.star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
-.trapezoid { clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%); }
-.parallelogram { clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); }
+/* Shape styles */
+.circle { border-radius: 50%; } /* Round */
+.square { /* Default */ }
+.triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); } /* Cuts into triangle */
+.rectangle { width: 180px; height: 100px; } /* Wider than tall */
+.diamond { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); } /* Diamond cut */
+.semicircle { clip-path: circle(50% at 50% 100%); } /* Half circle */
+.oval { border-radius: 75% / 50%; } /* Taller oval */
+.heart { clip-path: polygon(50% 20%, 70% 0%, 100% 20%, 100% 60%, 50% 100%, 0% 60%, 0% 20%, 30% 0%); } /* Heart shape */
+.star { clip-path: polygon(50% 0%, 61% 38%, 98% 38%, 68% 62%, 79% 100%, 50% 78%, 21% 100%, 32% 62%, 2% 38%, 39% 38%); } /* Star cut */
+.trapezoid { clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); } /* Trapezoid */
+.parallelogram { clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 40% 100%); } /* Slanted rectangle */
