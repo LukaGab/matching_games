@@ -11,15 +11,15 @@ h1 {
 }
 
 .target-area {
-    width: 350px; /* Increased from 300px */
-    height: 350px; /* Increased from 300px */
+    width: 350px;
+    height: 350px;
     margin: 20px auto;
     background-color: #d3d3d3;
     border: 2px dashed #4D869C;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4.5em; /* Increased from 4em for proportionality */
+    font-size: 4.5em;
 }
 
 .options-area {
@@ -39,12 +39,14 @@ h1 {
     justify-content: center;
     font-size: 2.5em;
     cursor: pointer;
+    position: relative; /* Default position for consistency */
 }
 
 .option:hover {
     background-color: #add8e6;
 }
 
+/* Rest of the CSS remains the same */
 #message {
     position: absolute;
     top: 50%;
@@ -86,7 +88,7 @@ h1 {
 }
 
 .circle { border-radius: 50%; }
-.square { /* Default square shape */ }
+.square { /* Explicit square, but default anyway */ }
 .triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
 .rectangle { width: 180px; height: 120px; }
 .diamond { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
